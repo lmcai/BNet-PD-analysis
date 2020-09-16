@@ -115,8 +115,8 @@ def find_crown(fam):
 	PL_sp=[]
 	valid_sp=[]
 	try:
-		plantlist=csv.reader(open('plantlist_csv'+fam+'.csv'), delimiter=',')
-		for row in c:
+		plantlist=csv.reader(open('plantlist_csv/'+fam+'.csv'), delimiter=',')
+		for row in plantlist:
 			PL_sp.append(row[4]+'_'+row[6])
 		#find overlap between ALLMB_sp and this family PL_sp
 		valid_sp=list(set(PL_sp) & ALLMB_sp)
@@ -130,7 +130,7 @@ def find_crown(fam):
 				dis=cur_dist
 				sp2=sp
 		return([sp1,sp2])
-	except IOError:print fam
+	except IOError:print('family not found: '+ fam)
 	
 
 crown_sp={}
@@ -139,3 +139,26 @@ crown_sp['Francoaceae']=['Melianthus_villosus','Greyia_flanaganii']
 
 from ete3 import Tree
 t=Tree('ALLMB.tre',format=1)
+
+for fam in families:
+	try:
+		crown_sp[fam]=find_crown(fam)
+	except:pass
+
+#prune the tree
+d=[crown_sp[i] for i in crown_sp.keys()]
+len(d)
+
+t.prune(d,preserve_branch_length=True)
+t.write(format=1, outfile="ALLMB.pruned_2spPerFam.tre")
+
+#modify name
+d={}
+for k in crown_sp.keys():
+	d[crown_sp[k]][0]=k+'1'
+	d[crown_sp[k]][0]=k+'2'
+
+for leaf in t:
+	leaf.name=d[leaf.name]
+
+t.write(format=1, outfile="ALLMB.pruned_2spPerFam.family_nam.tre")
