@@ -122,10 +122,12 @@ def find_crown(fam):
 		valid_sp=list(set(PL_sp) & ALLMB_sp)
 		#get the two most distantly related sp in the valid species list of the family
 		sp1=valid_sp[0]
-		dis=0
+		max_dist=0
+		sp1_node=t&sp1
 		for sp in valid_sp:
-			if :
-				dis=
+			cur_dist=sp1_node.get_distance(sp)
+			if cur_dist > max_dist:
+				dis=cur_dist
 				sp2=sp
 		return([sp1,sp2])
 	except IOError:print fam
@@ -134,3 +136,6 @@ def find_crown(fam):
 crown_sp={}
 crown_sp['Asphodelaceae']=['Asphodelus_aestivus','Dianella_sandwicensis']
 crown_sp['Francoaceae']=['Melianthus_villosus','Greyia_flanaganii']
+
+from ete3 import Tree
+t=Tree('ALLMB.tre',format=1)
