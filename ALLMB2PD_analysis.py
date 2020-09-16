@@ -93,3 +93,44 @@ for leaf in t:
 	leaf.name=d[leaf.name]
 
 t.write(format=1, outfile="ALLMB.pruned184sp.family_nam.tre")
+
+
+
+###########################################
+##Add crown group age for all species to reduce missing data in MPD analysis
+###########################################
+import csv
+
+#format species names in ALLMB
+ALLMB_sp=open('ALLMB.sp.list').readlines()
+#ALLMB_sp=['_'.join(l.strip().split('_')[:2]) for l in ALLMB_sp]
+ALLMB_sp=[l.strip() for l in ALLMB_sp]
+ALLMB_sp=set(ALLMB_sp)
+
+#get focus family list
+families=open('Hosts_families.list').readlines()
+families=[l.strip() for l in families]
+
+def find_crown(fam):
+	PL_sp=[]
+	valid_sp=[]
+	try:
+		plantlist=csv.reader(open('plantlist_csv'+fam+'.csv'), delimiter=',')
+		for row in c:
+			PL_sp.append(row[4]+'_'+row[6])
+		#find overlap between ALLMB_sp and this family PL_sp
+		valid_sp=list(set(PL_sp) & ALLMB_sp)
+		#get the two most distantly related sp in the valid species list of the family
+		sp1=valid_sp[0]
+		dis=0
+		for sp in valid_sp:
+			if :
+				dis=
+				sp2=sp
+		return([sp1,sp2])
+	except IOError:print fam
+	
+
+crown_sp={}
+crown_sp['Asphodelaceae']=['Asphodelus_aestivus','Dianella_sandwicensis']
+crown_sp['Francoaceae']=['Melianthus_villosus','Greyia_flanaganii']
