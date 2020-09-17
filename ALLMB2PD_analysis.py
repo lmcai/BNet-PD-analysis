@@ -111,6 +111,32 @@ ALLMB_sp=set(ALLMB_sp)
 families=open('Hosts_families.list').readlines()
 families=[l.strip() for l in families]
 
+#create genus level phylogeny of only plant families of interest
+#remove species not in the plant list
+ALLMB_sp_not_in_theplantlist=open('in_ALLMBtr_not_in_theplantlist.txt').readlines()
+ALLMB_sp_not_in_theplantlist=[l.strip() for l in ALLMB_sp_not_in_theplantlist]
+both_in_ALLMB_theplantlist = ALLMB_sp - set(ALLMB_sp_not_in_theplantlist)
+both_in_ALLMB_theplantlist=list(both_in_ALLMB_theplantlist)
+
+genera=[i.split('_')[0] for i in both_in_ALLMB_theplantlist]
+genera=list(set(genera))
+len(genera)
+#12,914 genera
+
+#keep only one species per genera
+sp2keep=[]
+for sp in both_in_ALLMB_theplantlist:
+	if sp.split('_')[1]!='.sp' and sp.split('_')[1]!='sp' and sp.split('_')[0] in genera:
+		sp2keep.append(sp)
+		genera.remove(sp.split('_')[0])
+
+
+#prune ALLMB 
+from ete3 import Tree
+t=Tree('ALLMB.tre',format=1)
+t.prune(sp2keep,preserve_branch_length=True)
+t.write(outfile='ALLMB_genus.tre',format=1)
+
 def find_crown(fam):
 	PL_sp=[]
 	valid_sp=[]
@@ -136,9 +162,6 @@ def find_crown(fam):
 crown_sp={}
 crown_sp['Asphodelaceae']=['Asphodelus_aestivus','Dianella_sandwicensis']
 crown_sp['Francoaceae']=['Melianthus_villosus','Greyia_flanaganii']
-
-from ete3 import Tree
-t=Tree('ALLMB.tre',format=1)
 
 for fam in families:
 	try:
