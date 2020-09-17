@@ -127,7 +127,7 @@ def find_crown(fam):
 		for sp in valid_sp:
 			cur_dist=sp1_node.get_distance(sp)
 			if cur_dist > max_dist:
-				dis=cur_dist
+				max_dist=cur_dist
 				sp2=sp
 		return([sp1,sp2])
 	except IOError:print('family not found: '+ fam)
