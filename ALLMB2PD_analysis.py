@@ -135,7 +135,7 @@ for sp in both_in_ALLMB_theplantlist:
 from ete3 import Tree
 t=Tree('ALLMB.tre',format=1)
 t.prune(sp2keep,preserve_branch_length=True)
-t.write(outfile='ALLMB_genus.tre',format=1)
+t.write(outfile='ALLMB.genus.tre',format=1)
 
 def find_crown(fam):
 	PL_sp=[]
@@ -160,8 +160,8 @@ def find_crown(fam):
 	
 
 crown_sp={}
-crown_sp['Asphodelaceae']=['Asphodelus_aestivus','Dianella_sandwicensis']
-crown_sp['Francoaceae']=['Melianthus_villosus','Greyia_flanaganii']
+crown_sp['Asphodelaceae']=['Asphodelus_serotinus','Dianella_prunina']
+crown_sp['Francoaceae']=['Melianthus_elongatus','Greyia_flanaganii']
 
 for fam in families:
 	try:
