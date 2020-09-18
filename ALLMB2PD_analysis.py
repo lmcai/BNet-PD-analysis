@@ -137,6 +137,10 @@ t=Tree('ALLMB.tre',format=1)
 t.prune(sp2keep,preserve_branch_length=True)
 t.write(outfile='ALLMB.genus.tre',format=1)
 
+#########################################
+#2 species per family
+t=Tree('ALLMB.genus.tre',format=1)
+
 #format species names in ALLMB.genus
 ALLMB_genus_sp=open('ALLMB.genus.list').readlines()
 ALLMB_genus_sp=[l.strip() for l in ALLMB_genus_sp]
@@ -153,15 +157,25 @@ def find_crown(fam):
 		#find overlap between ALLMB_sp and this family PL_sp
 		valid_sp=list(set(PL_sp) & ALLMB_genus_sp)
 		#get the two most distantly related sp in the valid species list of the family
-		sp1=valid_sp[0]
-		max_dist=0
-		sp1_node=t&sp1
 		for sp in valid_sp:
-			cur_dist=sp1_node.get_distance(sp)
-			if cur_dist > max_dist:
-				max_dist=cur_dist
-				sp2=sp
-		return([sp1,sp2])
+			tip=t&sp
+			tip.add_features(family=fam)
+		sp_num_in_node=0
+		for node in t.get_monophyletic(values=[fam],target_attr="family"):
+			if len([leaf for leaf in node])>sp_num_in_node:
+				node4output=node
+				sp_num_in_node=len([leaf for leaf in node])
+		sp1=[leaf.name for leaf in node4output.get_children()[0]]
+		sp2=[leaf.name for leaf in node4output.get_children()[1]]
+		#sp1=valid_sp[0]
+		#max_dist=0
+		#sp1_node=t&sp1
+		#for sp in valid_sp:
+		#	cur_dist=sp1_node.get_distance(sp)
+		#	if cur_dist > max_dist:
+		#		max_dist=cur_dist
+		#		sp2=sp
+		return([sp1[0],sp2[0]])
 	except IOError:print('family not found: '+ fam)
 	
 
@@ -176,7 +190,12 @@ for fam in families:
 	except:pass
 
 #prune the tree
-d=[crown_sp[i] for i in crown_sp.keys()]
+d=[]
+for i in crown_sp.keys():
+	try:
+		d=d+crown_sp[i] 
+	except:print i
+
 len(d)
 
 t.prune(d,preserve_branch_length=True)
@@ -185,8 +204,11 @@ t.write(format=1, outfile="ALLMB.pruned_2spPerFam.tre")
 #modify name
 d={}
 for k in crown_sp.keys():
-	d[crown_sp[k]][0]=k+'1'
-	d[crown_sp[k]][0]=k+'2'
+	try:
+		d[crown_sp[k][0]]=k+'1'
+		d[crown_sp[k][1]]=k+'2'
+	except:
+		pass
 
 for leaf in t:
 	leaf.name=d[leaf.name]
