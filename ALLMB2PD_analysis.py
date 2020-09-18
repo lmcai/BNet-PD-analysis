@@ -208,8 +208,8 @@ t.write(format=1, outfile="ALLMB.pruned_2spPerFam.tre")
 d={}
 for k in crown_sp.keys():
 	try:
-		d[crown_sp[k][0]]=k+'1'
-		d[crown_sp[k][1]]=k+'2'
+		for i in range(0,len(crown_sp[k])):
+			d[crown_sp[k][i]]=k+`i+1`
 	except:
 		pass
 
