@@ -160,13 +160,16 @@ def find_crown(fam):
 		for sp in valid_sp:
 			tip=t&sp
 			tip.add_features(family=fam)
-		sp_num_in_node=0
+		#sp_num_in_node=0
+		#for node in t.get_monophyletic(values=[fam],target_attr="family"):
+		#	if len([leaf for leaf in node])>sp_num_in_node:
+		#		node4output=node
+		#		sp_num_in_node=len([leaf for leaf in node])
+		#sp1=[leaf.name for leaf in node4output.get_children()[0]]
+		#sp2=[leaf.name for leaf in node4output.get_children()[1]]
+		sp=[]
 		for node in t.get_monophyletic(values=[fam],target_attr="family"):
-			if len([leaf for leaf in node])>sp_num_in_node:
-				node4output=node
-				sp_num_in_node=len([leaf for leaf in node])
-		sp1=[leaf.name for leaf in node4output.get_children()[0]]
-		sp2=[leaf.name for leaf in node4output.get_children()[1]]
+			sp=sp+[leaf.name for leaf in node4output.get_children()[0]+leaf.name for leaf in node4output.get_children()[1]]
 		#sp1=valid_sp[0]
 		#max_dist=0
 		#sp1_node=t&sp1
