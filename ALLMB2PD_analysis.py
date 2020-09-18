@@ -137,6 +137,12 @@ t=Tree('ALLMB.tre',format=1)
 t.prune(sp2keep,preserve_branch_length=True)
 t.write(outfile='ALLMB.genus.tre',format=1)
 
+#format species names in ALLMB.genus
+ALLMB_genus_sp=open('ALLMB.genus.list').readlines()
+ALLMB_genus_sp=[l.strip() for l in ALLMB_genus_sp]
+ALLMB_genus_sp=set(ALLMB_genus_sp)
+
+
 def find_crown(fam):
 	PL_sp=[]
 	valid_sp=[]
@@ -145,7 +151,7 @@ def find_crown(fam):
 		for row in plantlist:
 			PL_sp.append(row[4]+'_'+row[6])
 		#find overlap between ALLMB_sp and this family PL_sp
-		valid_sp=list(set(PL_sp) & ALLMB_sp)
+		valid_sp=list(set(PL_sp) & ALLMB_genus_sp)
 		#get the two most distantly related sp in the valid species list of the family
 		sp1=valid_sp[0]
 		max_dist=0
@@ -165,6 +171,7 @@ crown_sp['Francoaceae']=['Melianthus_elongatus','Greyia_flanaganii']
 
 for fam in families:
 	try:
+		print fam
 		crown_sp[fam]=find_crown(fam)
 	except:pass
 
