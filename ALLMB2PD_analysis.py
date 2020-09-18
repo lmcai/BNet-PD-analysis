@@ -178,7 +178,7 @@ def find_crown(fam):
 		#	if cur_dist > max_dist:
 		#		max_dist=cur_dist
 		#		sp2=sp
-		return([sp1[0],sp2[0]])
+		return(sp)
 	except IOError:print('family not found: '+ fam)
 	
 
