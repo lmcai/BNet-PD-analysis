@@ -240,7 +240,7 @@ crown_sp['Grossulariaceae']=['Ribes_huancabambense']
 crown_sp['Theaceae']=['Stewartia_sichuanensis','Camellia_hongkongensis']
 crown_sp['Clusiaceae']=['Leuconocarpus_riparius','Platonia_insignis']
 crown_sp['Calophyllaceae']=['Kayea_elmeri','Agasthiyamalaia_pauciflora']
-crown_sp['zamiaceae']=['Lepidozamia_hopei','Stangeria_eriopus']
+crown_sp['Zamiaceae']=['Lepidozamia_hopei','Stangeria_eriopus']
 
 
 #prune the tree
