@@ -160,22 +160,32 @@ def find_crown(fam):
 		for sp in valid_sp:
 			tip=t&sp
 			tip.add_features(family=fam)
-		sp_num_in_node=0
-		for node in t.get_monophyletic(values=[fam],target_attr="family"):
-			if len([leaf for leaf in node])>sp_num_in_node:
-				node4output=node
-				sp_num_in_node=len([leaf for leaf in node])
-		sp1=[leaf.name for leaf in node4output.get_children()[0]]
-		sp2=[leaf.name for leaf in node4output.get_children()[1]]
-		#sp1=valid_sp[0]
-		#max_dist=0
-		#sp1_node=t&sp1
-		#for sp in valid_sp:
-		#	cur_dist=sp1_node.get_distance(sp)
-		#	if cur_dist > max_dist:
-		#		max_dist=cur_dist
-		#		sp2=sp
-		return([sp1[0],sp2[0]])
+		#sp_num_in_node=0
+		#for node in t.get_monophyletic(values=[fam],target_attr="family"):
+		#	if len([leaf for leaf in node])>sp_num_in_node:
+		#		node4output=node
+		#		sp_num_in_node=len([leaf for leaf in node])
+		#sp1=[leaf.name for leaf in node4output.get_children()[0]]
+		#sp2=[leaf.name for leaf in node4output.get_children()[1]]
+		
+		#sp=[]
+		#for node in t.get_monophyletic(values=[fam],target_attr="family"):
+		#	if not node.is_leaf():
+		#		sp1=[leaf.name for leaf in node.get_children()[0]]
+		#		sp2=[leaf.name for leaf in node.get_children()[1]]
+		#		sp=sp+[sp1[0],sp2[0]]
+		#	else:
+		#		sp.append(node.name)
+		sp1=valid_sp[0]
+		max_dist=0
+		sp1_node=t&sp1
+		for sp in valid_sp:
+			cur_dist=sp1_node.get_distance(sp)
+			if cur_dist > max_dist:
+				max_dist=cur_dist
+				sp2=sp
+		#return(sp)
+		return([sp1,sp2])
 	except IOError:print('family not found: '+ fam)
 	
 
@@ -246,8 +256,8 @@ t.write(format=1, outfile="ALLMB.pruned_2spPerFam.tre")
 d={}
 for k in crown_sp.keys():
 	try:
-		d[crown_sp[k][0]]=k+'1'
-		d[crown_sp[k][1]]=k+'2'
+		for i in range(0,len(crown_sp[k])):
+			d[crown_sp[k][i]]=k+`i+1`
 	except:
 		pass
 
