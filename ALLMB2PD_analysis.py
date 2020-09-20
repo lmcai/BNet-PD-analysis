@@ -190,8 +190,6 @@ def find_crown(fam):
 	
 
 crown_sp={}
-crown_sp['Asphodelaceae']=['Asphodelus_serotinus','Dianella_prunina']
-crown_sp['Francoaceae']=['Melianthus_elongatus','Greyia_flanaganii']
 
 for fam in families:
 	try:
@@ -199,6 +197,8 @@ for fam in families:
 		crown_sp[fam]=find_crown(fam)
 	except:pass
 
+crown_sp['Asphodelaceae']=['Asphodelus_serotinus','Dianella_prunina']
+crown_sp['Francoaceae']=['Melianthus_elongatus','Greyia_flanaganii']
 crown_sp['Cycadaceae']=['Bowenia_spectabilis','Cycas_armstrongii']
 crown_sp['Euphorbiaceae']=['Omphalea_oppositifolia','Benoistia_sambiranensis']
 crown_sp['Achariaceae']=['Xylotheca_kraussiana','Ceratiosicyos_laevis']
