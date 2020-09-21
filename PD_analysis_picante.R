@@ -64,7 +64,7 @@ for (i in 1:length(x$Tree_label)){
 z=read.table('result_sum.tsv',sep='\t',header=T)
 for (i in 1:length(z$Tree_label)){
 	if (z$Num.families[i]==1){
-		y[as.character(z$Lep_accepted_name[i]),paste(z$Host_family[i],'2',sep='')]=1
+		y[as.character(z$Lep_accepted_name[i]),paste(x$Host_family[x$Lep_accepted_name==z$Lep_accepted_name[i]],'2',sep='')]=1
 	}
 }
 
@@ -75,9 +75,9 @@ write.csv(y,'Hosts_families_2sp_per_fam_4picante_all_recs.csv')
 library(picante)
 sptree=read.tree('ALLMB.pruned_2spPerFam.family_nam.tre')
 host_recs=read.csv('Hosts_families_2sp_per_fam_4picante_all_recs.csv',row.names = 1)
-pd.result <- pd(host_recs, sptree, include.root=TRUE)
+#pd.result <- pd(host_recs, sptree, include.root=TRUE)
 #41 species have no host plant recs (lichens, ants, etc.)
-write.table(pd.result,'pd.allRecs.tsv',sep='\t')
+#write.table(pd.result,'pd.allRecs.tsv',sep='\t')
 
 #MPD
 phydist=cophenetic(sptree)
