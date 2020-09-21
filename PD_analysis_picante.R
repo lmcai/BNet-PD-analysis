@@ -70,12 +70,11 @@ for (i in 1:length(z$Tree_label)){
 
 write.csv(y,'Hosts_families_2sp_per_fam_4picante_all_recs.csv')
 
-y1=y[ , !(names(y) %in% c("Grossulariaceae2"))]
 
 #calculating PD in picante
 library(picante)
 sptree=read.tree('ALLMB.pruned_2spPerFam.family_nam.tre')
-host_recs=read.csv('Hosts_families4picante_allRecs.csv',row.names = 1)
+host_recs=read.csv('Hosts_families_2sp_per_fam_4picante_all_recs.csv',row.names = 1)
 pd.result <- pd(host_recs, sptree, include.root=TRUE)
 #41 species have no host plant recs (lichens, ants, etc.)
 write.table(pd.result,'pd.allRecs.tsv',sep='\t')
