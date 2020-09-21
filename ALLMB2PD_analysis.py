@@ -241,7 +241,18 @@ crown_sp['Theaceae']=['Stewartia_sichuanensis','Camellia_hongkongensis']
 crown_sp['Clusiaceae']=['Leuconocarpus_riparius','Platonia_insignis']
 crown_sp['Calophyllaceae']=['Kayea_elmeri','Agasthiyamalaia_pauciflora']
 crown_sp['Zamiaceae']=['Lepidozamia_hopei','Stangeria_eriopus']
+crown_sp["Francoaceae"]=['Melianthus_elongatus','Greyia_flanaganii']
 
+#these families only have on genus
+
+crown_sp['Acoraceae']=[i for i in ALLMB_genus_sp if i.startswith('Acorus')] #30.0
+crown_sp["Bataceae"]=[i for i in ALLMB_genus_sp if i.startswith('Batis')]
+crown_sp["Cannaceae"]=[i for i in ALLMB_genus_sp if i.startswith('Canna')] #5.50678
+crown_sp["Coriariaceae"]=[i for i in ALLMB_genus_sp if i.startswith('Coriaria')] #11.835795999999998
+crown_sp["Flagellariaceae"]=[i for i in ALLMB_genus_sp if i.startswith('Flagellaria')] #3.411129
+crown_sp["Heliconiaceae"]=[i for i in ALLMB_genus_sp if i.startswith('Heliconia')] #41.952149000000006
+crown_sp["Krameriaceae"]=[i for i in ALLMB_genus_sp if i.startswith('Krameria')] #15.762454
+crown_sp["Siparunaceae"]=['Siparuna_lozaniana'] #53.800822
 
 #prune the tree
 d=[]
