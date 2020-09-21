@@ -15,7 +15,7 @@ for l in x[1:]:
 	a[l.split('\t')[0]]=l.strip()
 
 for i in range(1,len(y)):
-	y[i]=y[i].strip()+'\t'+a[y[i].split(',')[2].split('\t')[0]]
+	y[i]=y[i].strip()+'\t'+a[y[i].split('\t')[2].split('\t')[0]]
 
 #MNTD	
 x=open('mntd.allRecs.tsv').readlines()
@@ -24,7 +24,7 @@ for l in x[1:]:
 	a[l.split('\t')[0]]=l.strip()
 
 for i in range(1,len(y)):
-	y[i]=y[i].strip()+'\t'+a[y[i].split(',')[2].split('\t')[0]]
+	y[i]=y[i].strip()+'\t'+a[y[i].split('\t')[2].split('\t')[0]]
 
 
 
