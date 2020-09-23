@@ -30,28 +30,28 @@ for i in range(1,len(y)):
 
 ###########
 #filtered by number of records
-x=open('pd.atLeast3sources.tsv').readlines()
+x=open('pd.atLeast1source.tsv').readlines()
 a={}
 for l in x[1:]:
 	a[l.split('\t')[0]]=l.strip()
 
 for i in range(1,len(y)):
-	y[i]=y[i].strip()+'\t'+a[y[i].split(',')[2].split('\t')[0]]
+	y[i]=y[i].strip()+'\t'+a[y[i].split('\t')[2].split('\t')[0]]
 
 
-x=open('mpd.atLeast3sources.tsv').readlines()
+x=open('mpd.atLeast1source.tsv').readlines()
 a={}
 for l in x[1:]:
 	a[l.split('\t')[0]]=l.strip()
 
 for i in range(1,len(y)):
-	y[i]=y[i].strip()+'\t'+a[y[i].split(',')[2].split('\t')[0]]
+	y[i]=y[i].strip()+'\t'+a[y[i].split('\t')[2].split('\t')[0]]
 
 
-x=open('mntd.atLeast3sources.tsv').readlines()
+x=open('mntd.atLeast1source.tsv').readlines()
 a={}
 for l in x[1:]:
 	a[l.split('\t')[0]]=l.strip()
 
 for i in range(1,len(y)):
-	y[i]=y[i].strip()+'\t'+a[y[i].split(',')[2].split('\t')[0]]
+	y[i]=y[i].strip()+'\t'+a[y[i].split('\t')[2].split('\t')[0]]
