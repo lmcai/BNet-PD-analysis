@@ -50,21 +50,47 @@ rownames(heatmapData) <- rn
 #rownames(hdata4plot) <- rn
 
 #plot PD
+pdf('PD_circular_tree.pdf',width = 15,height = 15)
 ggtree(tree, ladderize = F, layout='circular') %<+% heatmapData + 
-  geom_tippoint(aes(color=as.numeric(PD)),size=0.5) + 
+  geom_tippoint(aes(color=PD),size=0.5) + 
   geom_tiplab2(aes(label=Lep_accepted_name), align=T, linetype=NA, offset=8, hjust=0.5, size = 0.5) +
-  scale_color_continuous(name='PD',low="blue", high="red", limits=c(325, 800))+
-  labs(title = "PD")
+  scale_color_continuous(name='PD',low="blue", high="yellow", limits=c(325, 800),oob=scales::squish)+
+  labs(title = "PD")+
+  geom_strip(2, 131, barsize=3, color='grey', offset=30, offset.text = 5,label='Hesperiinae')+
+  geom_strip(578, 1755, barsize=3, color='grey', offset=30, offset.text = 5,label='Pieridae')+
+  geom_strip(5, 1014, barsize=3, color='grey', offset=30, offset.text = 5,label='Lycaenidae')+
+  geom_strip(6, 1368, barsize=3, color='grey', offset=30, offset.text = 5,label='Nymphalidae')+
+  geom_strip(637, 1, barsize=3, color='grey', offset=30, offset.text = 5,label='Riodinidae')+
+  geom_strip(1683, 564, barsize=3, color='grey', offset=30, offset.text = 5,label='Papilionidae')
+  
+dev.off()
 
+#plot MPD
+pdf('MPD_circular_tree.pdf',width = 15,height = 15)
 ggtree(tree, ladderize = F, layout='circular') %<+% heatmapData + 
   geom_tippoint(aes(color=as.numeric(mpd.obs)),size=0.5) + 
   geom_tiplab2(aes(label=Lep_accepted_name), align=T, linetype=NA, offset=8, hjust=0.5, size = 0.5) +
   scale_color_continuous(name='mpd.obs',low="blue", high="yellow")+
-  labs(title = "MPD")
+  labs(title = "MPD")+
+  geom_strip(2, 131, barsize=3, color='grey', offset=30, offset.text = 5,label='Hesperiinae')+
+  geom_strip(578, 1755, barsize=3, color='grey', offset=30, offset.text = 5,label='Pieridae')+
+  geom_strip(5, 1014, barsize=3, color='grey', offset=30, offset.text = 5,label='Lycaenidae')+
+  geom_strip(6, 1368, barsize=3, color='grey', offset=30, offset.text = 5,label='Nymphalidae')+
+  geom_strip(637, 1, barsize=3, color='grey', offset=30, offset.text = 5,label='Riodinidae')+
+  geom_strip(1683, 564, barsize=3, color='grey', offset=30, offset.text = 5,label='Papilionidae')
+dev.off()
 
 #plot DSI/mpd.z
+pdf('DSI_circular_tree.pdf',width = 15,height = 15)
 ggtree(tree, ladderize = F, layout='circular') %<+% heatmapData + 
   geom_tippoint(aes(color=as.numeric(mpd.obs.z)),size=0.5) + 
   geom_tiplab2(aes(label=Lep_accepted_name), align=T, linetype=NA, offset=8, hjust=0.5, size = 0.5) +
   scale_color_continuous(name='mpd.obs.z',low="blue", high="yellow")+
-  labs(title = "DSI")
+  labs(title = "DSI")+
+  geom_strip(2, 131, barsize=3, color='grey', offset=30, offset.text = 5,label='Hesperiinae')+
+  geom_strip(578, 1755, barsize=3, color='grey', offset=30, offset.text = 5,label='Pieridae')+
+  geom_strip(5, 1014, barsize=3, color='grey', offset=30, offset.text = 5,label='Lycaenidae')+
+  geom_strip(6, 1368, barsize=3, color='grey', offset=30, offset.text = 5,label='Nymphalidae')+
+  geom_strip(637, 1, barsize=3, color='grey', offset=30, offset.text = 5,label='Riodinidae')+
+  geom_strip(1683, 564, barsize=3, color='grey', offset=30, offset.text = 5,label='Papilionidae')
+dev.off()
