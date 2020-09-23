@@ -46,8 +46,6 @@ write.csv(y,'Hosts_families_2sp_per_fam_4picante_atLeast1source.csv')
 
 
 
-
-
 #SRR6727422_X_Lycaenidae_Polyommatinae_Polyommatini_Cyclargus_thomasi does not have source information
 
 #calculating PD in picante
@@ -72,6 +70,11 @@ write.table(ses.mntd.result,'mntd.allRecs.tsv',sep='\t')
 host_recs_filtered=read.csv('Hosts_families4picante_atLeast1source.csv',row.names = 1)
 pd.filtered.result <- pd(host_recs_filtered, sptree, include.root=TRUE)
 write.table(pd.filtered.result,'pd.atLeast1soource.tsv',sep='\t')
+
+sptree=read.tree('ALLMB.pruned_2spPerFam.family_nam.tre')
+phydist=cophenetic(sptree)
+
+host_recs_filtered=read.csv('Hosts_families_2sp_per_fam_4picante_atLeast1source.csv',row.names = 1)
 ses.mpd.filtered.result <- ses.mpd(host_recs_filtered, phydist, null.model = "taxa.labels",abundance.weighted = FALSE, runs = 99)
 ses.mntd.result <- ses.mntd(host_recs_filtered, phydist, null.model = "taxa.labels",abundance.weighted = FALSE, runs = 99)
 write.table(ses.mpd.filtered.result,'mpd.atLeast3soources.tsv',sep='\t')
