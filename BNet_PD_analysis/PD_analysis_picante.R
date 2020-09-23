@@ -69,7 +69,7 @@ write.table(ses.mntd.result,'mntd.allRecs.tsv',sep='\t')
 #filter for number of records
 host_recs_filtered=read.csv('Hosts_families4picante_atLeast1source.csv',row.names = 1)
 pd.filtered.result <- pd(host_recs_filtered, sptree, include.root=TRUE)
-write.table(pd.filtered.result,'pd.atLeast1soource.tsv',sep='\t')
+write.table(pd.filtered.result,'pd.atLeast1source.tsv',sep='\t')
 
 sptree=read.tree('ALLMB.pruned_2spPerFam.family_nam.tre')
 phydist=cophenetic(sptree)
@@ -77,8 +77,8 @@ phydist=cophenetic(sptree)
 host_recs_filtered=read.csv('Hosts_families_2sp_per_fam_4picante_atLeast1source.csv',row.names = 1)
 ses.mpd.filtered.result <- ses.mpd(host_recs_filtered, phydist, null.model = "taxa.labels",abundance.weighted = FALSE, runs = 99)
 ses.mntd.result <- ses.mntd(host_recs_filtered, phydist, null.model = "taxa.labels",abundance.weighted = FALSE, runs = 99)
-write.table(ses.mpd.filtered.result,'mpd.atLeast3soources.tsv',sep='\t')
-write.table(ses.mntd.result,'mntd.atLeast3soources.tsv',sep='\t')
+write.table(ses.mpd.filtered.result,'mpd.atLeast1source.tsv',sep='\t')
+write.table(ses.mntd.result,'mntd.atLeast1source.tsv',sep='\t')
 
 ##############################
 #two tips per family
