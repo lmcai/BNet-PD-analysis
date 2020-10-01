@@ -75,8 +75,8 @@ sptree=read.tree('ALLMB.pruned_2spPerFam.family_nam.tre')
 phydist=cophenetic(sptree)
 
 host_recs_filtered=read.csv('Hosts_families_2sp_per_fam_4picante_atLeast1source.csv',row.names = 1)
-ses.mpd.filtered.result <- ses.mpd(host_recs_filtered, phydist, null.model = "taxa.labels",abundance.weighted = FALSE, runs = 99)
-ses.mntd.result <- ses.mntd(host_recs_filtered, phydist, null.model = "taxa.labels",abundance.weighted = FALSE, runs = 99)
+ses.mpd.filtered.result <- ses.mpd(host_recs_filtered, phydist, null.model = "taxa.labels",abundance.weighted = FALSE, runs = 999)
+ses.mntd.result <- ses.mntd(host_recs_filtered, phydist, null.model = "taxa.labels",abundance.weighted = FALSE, runs = 999)
 write.table(ses.mpd.filtered.result,'mpd.atLeast1source.tsv',sep='\t')
 write.table(ses.mntd.result,'mntd.atLeast1source.tsv',sep='\t')
 
@@ -109,9 +109,9 @@ host_recs=read.csv('Hosts_families_2sp_per_fam_4picante_all_recs.csv',row.names 
 
 #MPD
 phydist=cophenetic(sptree)
-ses.mpd.result <- ses.mpd(host_recs, phydist, null.model = "taxa.labels",abundance.weighted = FALSE, runs = 99)
+ses.mpd.result <- ses.mpd(host_recs, phydist, null.model = "taxa.labels",abundance.weighted = FALSE, runs = 999)
 write.table(ses.mpd.result,'mpd.allRecs.tsv',sep='\t')
 #417 species have MPD values (more than two host plant families)
-ses.mntd.result <- ses.mntd(host_recs, phydist, null.model = "taxa.labels",abundance.weighted = FALSE, runs = 99)
+ses.mntd.result <- ses.mntd(host_recs, phydist, null.model = "taxa.labels",abundance.weighted = FALSE, runs = 999)
 write.table(ses.mntd.result,'mntd.allRecs.tsv',sep='\t')
 
