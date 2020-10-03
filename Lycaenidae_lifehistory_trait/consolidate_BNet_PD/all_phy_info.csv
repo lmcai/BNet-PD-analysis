@@ -32,7 +32,7 @@
 31,B_10097,Nymphalidae,Charaxinae,Anaeini,Consul,electra,Consul electra
 32,B_10081,Nymphalidae,Calinaginae,,Calinaga,buddha,Calinaga buddha
 33,B_13153,Nymphalidae,Nymphalinae,Junoniini,Junonia,natalica,Junonia natalica
-34,B_13088,Nymphalidae,Nymphalinae,Victoriini,Anartia,fatima,Anartia fatima
+34,B_13088,Nymphalidae,Nymphalinae,Victorini,Anartia,fatima,Anartia fatima
 35,B_13371,Nymphalidae,Nymphalinae,Melanitini,Melitaea,didyma,Melitaea didyma
 36,B_13172,Nymphalidae,Nymphalinae,Kallimini,Kallima,inachus,Kallima inachus
 37,B_13522,Nymphalidae,Nymphalinae,Nymphalini,Nymphalis,xanthomelas,Nymphalis xanthomelas
@@ -75,13 +75,13 @@
 74,B_8927,Lycaenidae,Theclinae,Iolaini,Hemiolaus,caeculus,Hemiolaus caeculus
 75,B_9462,Lycaenidae,Theclinae,Remelanini,Remelana,jangala,Remelana jangala
 76,B_8977,Lycaenidae,Theclinae,Hypolycaenini,Hypolycaena,phorbas,Hypolycaena phorbas
-77,B_7565,Lycaenidae,Theclinae,Cheritriini,Drupadia,ravindra,Drupadia ravindra
+77,B_7565,Lycaenidae,Theclinae,Cheritrini,Drupadia,ravindra,Drupadia ravindra
 78,B_8918,Lycaenidae,Theclinae,Horagini,Horaga,onyx,Horaga onyx
 79,B_9255,Lycaenidae,Theclinae,Loxurini,Loxura,atymnus,Loxura atymnus
 80,B_6943,Lycaenidae,Theclinae,Amblypodiini,Iraota,timoleon,Iraota timoleon
 81,B_9150,Lycaenidae,Theclinae,Iolaini,Iolaus,sidus,Iolaus sidus
 82,B_6937,Lycaenidae,Theclinae,Amblypodiini,Amblypodia,narada,Amblypodia narada
-83,B_7553,Lycaenidae,Theclinae,Cheritriini,Dapidodigma,hymen,Dapidodigma hymen
+83,B_7553,Lycaenidae,Theclinae,Cheritrini,Dapidodigma,hymen,Dapidodigma hymen
 84,B_9686,Lycaenidae,Theclinae,Zesiusini,Zesius,chrysomallus,Zesius chrysomallus
 85,B_7542,Lycaenidae,Theclinae,Catapaecilmatini,Catapaecilma,major,Catapaecilma major
 86,B_7619,Lycaenidae,Theclinae,Deudorigini,Deudorix,epijarbas,Deudorix epijarbas
@@ -94,7 +94,7 @@
 93,B_7516,Lycaenidae,Theclinae,Loxurini,Neomyrina,nivea,Neomyrina nivea
 94,B_7418,Lycaenidae,Theclinae,Arhopalini,Arhopala,micale,Arhopala micale
 95,B_9431,Lycaenidae,Theclinae,Ogyrini,Ogyris,amaryllis,Ogyris amaryllis
-96,B_9343,Lycaenidae,Theclinae,Lucini,Lucia,limbaria,Lucia limbaria
+96,B_9343,Lycaenidae,Theclinae,Luciini,Lucia,limbaria,Lucia limbaria
 97,B_4662,Lycaenidae,Theclinae,Candalidini,Candalides,geminus,Candalides geminus
 98,B_9679,Lycaenidae,Theclinae,Zesiusini,Jalmenus,evagoras,Jalmenus evagoras
 99,B_9685,Lycaenidae,Theclinae,Zesiusini,Pseudalmenus,chlorinda,Pseudalmenus chlorinda
