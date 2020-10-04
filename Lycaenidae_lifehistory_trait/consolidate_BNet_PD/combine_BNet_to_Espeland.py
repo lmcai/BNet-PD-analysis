@@ -1,4 +1,5 @@
 import csv
+from statistics import median
 results=csv.reader(open('../../BNet_PD_analysis/PD_results_sum_new_mpd_mntd.tsv'), delimiter='\t')
 
 num_fam={}
@@ -54,8 +55,15 @@ for row in results:
 		dsi_mpd_genus[genus]=[row[9]]
 		dsi_mntd_genus[genus]=[row[15]]
 
+
+x=open('/Users/limingcai/Documents/GitHub/BNet-PD-analysis/Lycaenidae_lifehistory_trait/consolidate_BNet_PD/all_phy_info.csv').readlines()
+
 #seven tribes in the Espeland tribes but not in BNet tribes
-['Anaeomorphini', 'Anthoptini', 'Calpodini', 'Moncini', 'Oxylidini', 'Stalachtini', 'Thymelicini']
+['Sericinini', 'Baoridini', 'Nepheroniini', 'incertae sedis', 'Aphnaeini', 'Stalachtini', '0', 'Mesosemiini', 'Thymelicini', 'Anthoptini', 'Pallini', 'Mechanitini', 'Moncini', 'Carystini', 'Abisarini', 'Leptosiaini', 'Oxylidini', 'Anaeomorphini']
+#Baoridini->Baoridiini
+#Nepheroniini->Nepheronini
+#Pallini->Pallaini
+#Leptosiaini->Leptosianini
 
 #Anaeomorphini is not sampled in BNet
 #Calpodini is not sampled in BNet
@@ -65,9 +73,20 @@ for row in results:
 #Thymelicini is represented as RE04C201_X_Hesperiidae_Hesperiinae_Hesperiini_Thymelicus_lineola_X_ME SRR1325130_X_Hesperiidae_Hesperiinae_Hesperiini_Thymelicus_sylvestris
 #Oxylidini is represented as BN003962_NP95Y267_Lycaenidae_Theclinae_Loxurini_Eooxylides_tharis
 
+y=open('/Users/limingcai/Documents/GitHub/BNet-PD-analysis/BNet_PD_analysis/Hosts_genus_revised_Sep2.csv').readlines()
 
-x=open('/Users/limingcai/Documents/GitHub/BNet-PD-analysis/Lycaenidae_lifehistory_trait/consolidate_BNet_PD/all_phy_info.csv').readlines()
-
+host_fam={}
+host_fam_genus={}
+for l in y[1:]:
+	recs=l.split(',')
+	tribe=recs[0].split('_')[4]
+	genus=recs[0].split('_')[5]
+	try:
+		host_fam[tribe].append(recs[4])
+		host_fam_genus[genus].append(recs[4])
+	except KeyError:
+		host_fam[tribe]=[recs[4]]
+		host_fam_genus[genus]=[recs[4]]
 
 def return_median(value_string):
 	return(str(median([float(i) for i in value_string.split()])))
@@ -83,7 +102,8 @@ for l in x:
 		mntd_str=' '.join([i for i in mntd[l.split(',')[4]] if not i =='NA'])
 		dsi_mpd_str=' '.join([i for i in dsi_mpd[l.split(',')[4]] if not i =='NA'])
 		dsi_mntd_str=' '.join([i for i in dsi_mntd[l.split(',')[4]] if not i =='NA'])
-		out1.write(l.strip()+','+','.join([num_fam_str,pd_str,mpd_str,mntd_str,dsi_mpd_str,dsi_mntd_str])+'\n')
+		fam_str=' '.join(host_fam[l.split(',')[4]])
+		out1.write(l.strip()+','+','.join([num_fam_str,pd_str,mpd_str,mntd_str,dsi_mpd_str,dsi_mntd_str,fam_str])+'\n')
 		out2.write(l.strip()+','+','.join([return_median(num_fam_str),return_median(pd_str),return_median(mpd_str),return_median(mntd_str),return_median(dsi_mpd_str),return_median(dsi_mntd_str)])+'\n')
 	except (KeyError,statistics.StatisticsError):
 		try:
@@ -94,11 +114,12 @@ for l in x:
 			mntd_str=' '.join([i for i in mntd_genus[l.split(',')[5]] if not i =='NA'])
 			dsi_mpd_str=' '.join([i for i in dsi_mpd_genus[l.split(',')[5]] if not i =='NA'])
 			dsi_mntd_str=' '.join([i for i in dsi_mntd_genus[l.split(',')[5]] if not i =='NA'])
-			out1.write(l.strip()+','+','.join([num_fam_str,pd_str,mpd_str,mntd_str,dsi_mpd_str,dsi_mntd_str])+'\n')
+			fam_str=' '.join(host_fam_genus[l.split(',')[4]])
+			out1.write(l.strip()+','+','.join([num_fam_str,pd_str,mpd_str,mntd_str,dsi_mpd_str,dsi_mntd_str,fam_str])+'\n')
 			out2.write(l.strip()+','+','.join([return_median(num_fam_str),return_median(pd_str),return_median(mpd_str),return_median(mntd_str),return_median(dsi_mpd_str),return_median(dsi_mntd_str)])+'\n')
 		except (KeyError,statistics.StatisticsError):
 			#this genus is not sampled in BNet or does not feed on plants
-			out1.write(l.strip()+','+','.join(['NA','NA','NA','NA','NA','NA'])+'\n')
+			out1.write(l.strip()+','+','.join(['NA','NA','NA','NA','NA','NA','NA'])+'\n')
 			out2.write(l.strip()+','+','.join(['NA','NA','NA','NA','NA','NA'])+'\n')
 
 out1.close()
