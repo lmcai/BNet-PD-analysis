@@ -8,7 +8,7 @@ y=read.csv('Hosts_families4picante_null.csv',row.names=1)
 
 ##all records included
 for (i in 1:length(x$Tree_label)){
-	y[x$Lep_accepted_name[i],x$Host_family[i]]=1
+	y[as.character(x$Lep_accepted_name[i]),as.character(x$Host_family[i])]=1
 }
 
 write.csv(y,'Hosts_families4picante_all_recs.tsv')
